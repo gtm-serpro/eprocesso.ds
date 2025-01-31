@@ -23,7 +23,7 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export default function Root() {
   return (
     <html lang="en">
       <head>
@@ -32,17 +32,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="bg-gray-100 text-gray-900">
+        <main className="container mx-auto min-h-screen flex flex-col items-center justify-center">
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
-}
-
-export default function App() {
-  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
@@ -56,17 +54,17 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       error.status === 404
         ? "The requested page could not be found."
         : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (import.meta.env.DEV && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="container mx-auto min-h-screen flex flex-col items-center justify-center text-center">
+      <h1 className="text-4xl font-bold">{message}</h1>
+      <p className="text-lg text-gray-600">{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="bg-gray-200 p-4 rounded-md mt-4 overflow-x-auto">
           <code>{stack}</code>
         </pre>
       )}

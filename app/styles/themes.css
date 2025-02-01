@@ -1,0 +1,20 @@
+/* ✅ Light Theme */
+:root {
+    --bg-color: var(--color-grayCool-2);
+    --primary-color: var(--color-blueWarmVivid-50);
+
+  }
+  
+  /* ✅ Dark Theme */
+  [data-theme="dark"] {
+    --bg-color: var(--color-blue-90);
+    --primary-color: var(--color-orange-50);
+
+  }
+  
+  /* ✅ Accessible Theme */
+  [data-theme="accessible"] {
+    --bg-color: var(--color-pure-0);
+    --primary-color: var(--color-pure-100);
+  }
+  

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Route, Theme } from "../../types/profile";
+import Button from "../../components/ui/Button"; // ✅ Import Button component
 
 export function meta({}: Route["MetaArgs"]) {
   return [{ title: "User Profile" }];
@@ -25,13 +26,14 @@ export default function ProfilePage() {
 
       <div className="mt-4 flex gap-4">
         {(["light", "dark", "accessible"] as Theme[]).map((t) => (
-          <button
+          <Button
             key={t}
-            className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition"
+            variant="primary"
+            size="md"
             onClick={() => setTheme(t)}
           >
             {t.charAt(0).toUpperCase() + t.slice(1)}
-          </button>
+          </Button>
         ))}
       </div>
     </div>

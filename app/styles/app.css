@@ -1,32 +1,20 @@
 @import "tailwindcss";
-
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-/* Default Light Theme */
-:root {
-  --bg-color: white;
-  --text-color: black;
-}
-
-/* Dark Theme */
-[data-theme="dark"] {
-  --bg-color: #111827;
-  --text-color: white;
-}
-
-/* Accessible Theme (High Contrast) */
-[data-theme="accessible"] {
-  --bg-color: #ffffe0;
-  --text-color: #333333;
-}
+@import "./variables.css"; /* ✅ Import theme variables */
+@import "./themes.css"; /* ✅ Import theme definitions */
 
 /* ✅ Apply Default Theme Colors Globally */
 html, body {
   font-family: var(--font-sans);
   background-color: var(--bg-color);
-  color: var(--text-color); /* ✅ Default text color */
   transition: background-color 0.3s, color 0.3s;
+
+  & p,h1,h2,h3,h4 {
+    color: var(--color-pure-0);
+    mix-blend-mode: difference;
+  }
+}
+
+@layer components {
+  @import "./components/button.css";
+  @import "./components/header.css";
 }

@@ -8,7 +8,7 @@ export function meta({}: Route["MetaArgs"]) {
 export default function AdminPage() {
   return (
     <ProtectedRoute>
-      <div className="container mx-auto p-6 text-white">
+      <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Admin Panel</h1>
         <p>Welcome, admin! You have full access to this panel.</p>
       </div>

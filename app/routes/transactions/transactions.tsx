@@ -8,7 +8,7 @@ export function meta({}: Route["MetaArgs"]) {
 export default function TransactionsPage() {
   return (
     <ProtectedRoute>
-      <div className="container mx-auto p-6 text-white">
+      <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Transactions</h1>
         <p>Manage financial transactions securely.</p>
       </div>

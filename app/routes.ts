@@ -4,6 +4,7 @@ export default [
   index("routes/home.tsx"), // Public homepage
   route("login", "routes/auth/login.tsx"), // Public login page
   route("403", "routes/error/403.tsx"), // 403 Forbidden page
+  route("profile", "routes/user/profile.tsx"), // Profile page
   
   // Protect admin route
   route("admin", "routes/admin/admin.tsx"),

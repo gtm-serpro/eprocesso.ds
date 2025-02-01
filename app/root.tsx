@@ -6,33 +6,48 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { useEffect } from "react";
+import { useLocation } from "react-router";
+import type { Route } from "./types/root";
 
-import type { Route } from "./+types/root";
 import "./styles/app.css";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
+// ✅ Function to get the theme instantly on first render (prevents white flash)
+function getInitialTheme() {
+  if (typeof window === "undefined") return "light"; // Default to light on SSR
+  return localStorage.getItem("theme") || "light";
+}
 
 export default function Root() {
+  const location = useLocation();
+  const theme = getInitialTheme(); // Get theme instantly before render
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  }, [location.pathname]);
+
   return (
-    <html lang="en">
+    <html lang="en" data-theme={theme}> {/* ✅ Applies theme instantly */}
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {/* ✅ Inline script to set theme instantly (avoids white flash) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var theme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+              })();
+            `,
+          }}
+        />
       </head>
-      <body className="bg-gray-100 text-gray-900">
+      <body className="bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
         <main className="container mx-auto min-h-screen flex flex-col items-center justify-center">
           <Outlet />
         </main>
@@ -40,34 +55,5 @@ export default function Root() {
         <Scripts />
       </body>
     </html>
-  );
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
-  return (
-    <main className="container mx-auto min-h-screen flex flex-col items-center justify-center text-center">
-      <h1 className="text-4xl font-bold">{message}</h1>
-      <p className="text-lg text-gray-600">{details}</p>
-      {stack && (
-        <pre className="bg-gray-200 p-4 rounded-md mt-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
   );
 }

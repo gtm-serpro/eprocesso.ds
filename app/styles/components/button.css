@@ -12,10 +12,14 @@
 .btn-secondary,
 .btn-tertiary {
   background-color: var(--primary-color);
-  color: var(--color-pure-0);
+  /* color: var(--color-pure-0);   */
   
   &:hover {
     filter: brightness(90%);
   }
+}
+
+.btn-tertiary{
+  background-color: transparent;
 }
 

@@ -2,11 +2,11 @@ import Button from "./ui/Button"; // ✅ Import Button component
 
 export default function Header() {
   return (
-    <header className="w-full bg-gray-800 text-white py-4 fixed top-0 left-0 z-50 shadow-md">
+    <header className="bg-pure-0 w-full py-4 fixed top-0 left-0 z-50 shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-6">
         {/* Logo or Branding */}
-        <Button as="a" to="/" className="text-xl font-bold !bg-transparent hover:!text-gray-300">
-          My App
+        <Button as="a" to="/" variant="tertiary" className="text-xl font-bold">
+          e-processo
         </Button>
 
         {/* Navigation Links */}

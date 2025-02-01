@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import { useLocation } from "react-router";
 import type { Route } from "./types/root";
 
-import Header from "./components/Header"; // ✅ Import Header
 import "./styles/app.css";
+import Header from "./components/Header";
 
 // ✅ Function to get the theme instantly on first render (prevents white flash)
 function getInitialTheme() {
@@ -30,7 +30,7 @@ export default function Root() {
   }, [location.pathname]);
 
   return (
-    <html lang="en" data-theme={theme}>
+    <html lang="en" data-theme={theme}> {/* ✅ Applies theme instantly */}
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,7 @@ export default function Root() {
       </head>
       <body className="bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
         <Header /> {/* ✅ Add Header Component */}
-        <main className="container mx-auto min-h-screen flex flex-col items-center justify-center pt-16">
+        <main className="container mx-auto min-h-screen flex flex-col items-center justify-center">
           <Outlet />
         </main>
         <ScrollRestoration />

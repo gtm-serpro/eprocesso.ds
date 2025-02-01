@@ -48,7 +48,7 @@ export default function Root() {
           }}
         />
       </head>
-      <body className="bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
+      <body className="bg-[var(--bg-color)] transition-colors duration-300">
         <Header /> {/* ✅ Add Header Component */}
         <main className="container mx-auto min-h-screen flex flex-col items-center justify-center">
           <Outlet />

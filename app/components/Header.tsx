@@ -2,7 +2,7 @@ import Button from "./ui/Button"; // ✅ Import Button component
 
 export default function Header() {
   return (
-    <header className="bg-pure-0 w-full py-4 fixed top-0 left-0 z-50 shadow-sm">
+    <header className="bg-pure-0 dark:bg-pure-100 accessible:bg-purple-50 w-full py-4 fixed top-0 left-0 z-50 shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-6">
         {/* Logo or Branding */}
         <Button as="a" to="/" variant="tertiary" className="text-xl font-bold">

@@ -1,3 +1,4 @@
+@layer base {
 /* ✅ Light Theme */
 :root {
     --bg-color: var(--color-grayCool-2);
@@ -17,4 +18,4 @@
     --bg-color: var(--color-pure-0);
     --primary-color: var(--color-pure-100);
   }
-  
+}

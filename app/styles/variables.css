@@ -1,3 +1,7 @@
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant accessible (&:where([data-theme="accessible"], [data-theme="accessible"] *));
+
 @theme {
     --font-sans: "Rawline", ui-sans-serif, system-ui, sans-serif,
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
